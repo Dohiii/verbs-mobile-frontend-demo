@@ -1,32 +1,41 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native"
+import { ButtomFormSelectors } from "../components/ButtomForm"
+import { FormContext, FormContextInterface } from "../FormContext"
+import InformationAboutVerb from "../components/InformationComponent"
+import VerbInputFiled from "../components/InputField"
+import { MainButtons } from "../components/MainButtons"
+import { SpecialButtons } from "../components/SpecialButtons"
+import { Text, View } from "../components/Themed"
+import { RootTabScreenProps } from "../types"
+import React, { useState, useEffect, useContext } from "react"
+import { Button } from "@ui-kitten/components"
+import Verbs from "../Verbs.json"
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
-
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabOneScreen({ navigation }: RootTabScreenProps<"TabOne">) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <InformationAboutVerb />
+      <VerbInputFiled />
+      <SpecialButtons />
+      <MainButtons />
+      <Button>State</Button>
+      <ButtomFormSelectors />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
-});
+})
