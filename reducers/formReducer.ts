@@ -7,7 +7,7 @@ export interface FormStateInterface {
 
 export type FormActionInterface = { type: "CHANGE_CATEGORY"; payload: string } | { type: "CHANGE_ZWROTNE"; payload: boolean } | { type: "CHANGE_OSOBY"; payload: string[] } | { type: "CHANGE_TENSE"; payload: string[] }
 
-export const initialState: FormStateInterface = {
+export const initiaFormlState: FormStateInterface = {
   zwrotne: true,
   osoba: ["IO"],
   categoria: "regularny",
