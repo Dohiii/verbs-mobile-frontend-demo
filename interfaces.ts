@@ -1,18 +1,19 @@
 export interface Verb {
-  IO: string
-  LEI: string
-  LORO: string
-  LUI: string
-  NOI: string
-  TU: string
-  VOI: string
-  category: string
-  correctWord: string
-  czasownik: string
-  group: string
-  pluc: string
+  [key: string]: string | undefined
   tense: string
-  tlumaczenie: string
+  category: string
+  group: string
+  IO?: string
+  TU?: string
+  LUI?: string
+  LEI?: string
+  NOI?: string
+  VOI?: string
+  LORO?: string
+  czasownik?: string
+  tlumaczenie?: string
+  correctWord?: string
+  pluc?: string
 }
 
 export interface AppStateInterface {

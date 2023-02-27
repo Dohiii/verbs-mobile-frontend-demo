@@ -23,10 +23,12 @@ export default function App() {
   const isLoadingComplete = useCachedResources()
   const colorScheme = useColorScheme()
 
-  const filterFormStateAndReturnVerb = (formState: FormStateInterface): void => {
+  const filterFormStateAndReturnVerb = async (formState: FormStateInterface): Promise<Verb> => {
     // work with formSate
     let randomOsoba = getRandomElement(formState.osoba)
     const randomTense = getRandomElement(formState.tense)
+
+    //working with osoba
 
     if (randomOsoba === "LUI/LEI") {
       randomOsoba = "LUI"
@@ -37,8 +39,8 @@ export default function App() {
 
     let filteredVerb: Verb[] = []
 
-    filteredByZwrotne.forEach((verb) => {
-      verb.osoba.forEach((osoba: any) => {
+    for (const verb of filteredByZwrotne) {
+      for (const osoba of verb.osoba as Verb[]) {
         if (osoba.category === formState.categoria && osoba.tense === randomTense) {
           osoba.czasownik = verb.czasownik
           osoba.tlumaczenie = verb.tlumaczenie
@@ -46,20 +48,23 @@ export default function App() {
           osoba.pluc = randomOsoba
           filteredVerb.push(osoba)
         }
-      })
-    })
-
+      }
+    }
     shuffle(filteredVerb)
 
-    dispatch({ type: "SET_VERB_IN_STATE", payload: getRandomElement(filteredVerb) })
-
-    // const getRandomVerb: Verb = getRandomElement(filteredVerb)
-    // return getRandomElement(filteredVerb)
+    return getRandomElement(filteredVerb)
   }
 
   useEffect(() => {
-    filterFormStateAndReturnVerb(formState)
-    console.log(state.verb)
+    const getVerbData = async () => {
+      try {
+        const verbData = await filterFormStateAndReturnVerb(formState)
+        dispatch({ type: "SET_VERB_IN_STATE", payload: verbData })
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getVerbData()
   }, [formState])
 
   if (!isLoadingComplete) {

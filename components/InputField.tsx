@@ -1,13 +1,15 @@
 import { Layout, Text, Input } from "@ui-kitten/components"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { StyleSheet } from "react-native"
+import { AppContext } from "../AppContext"
 
 export default function VerbInputFiled() {
   const [value, setValue] = useState("")
+  const { state } = useContext(AppContext)
 
   return (
     <Layout style={styles.inputContanier}>
-      <Text style={styles.labelStyle}>IO</Text>
+      <Text style={styles.labelStyle}>{state.verb?.pluc ?? ""}</Text>
       <Input style={styles.inputStyles} placeholder="Place your Text" value={value} onChangeText={(nextValue) => setValue(nextValue)} />
     </Layout>
   )

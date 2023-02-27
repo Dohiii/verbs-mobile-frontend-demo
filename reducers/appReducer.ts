@@ -18,10 +18,6 @@ export const initialState: AppStateInterface = {
 
 export function appReducer(state: AppStateInterface, action: AppActionInterface): AppStateInterface {
   switch (action.type) {
-    case "ENABLE_FORME_CZASOWNIKA":
-      return { ...state, topFormSelected: true }
-    case "ENABLE_ODMIEN_CZASOWNIK":
-      return { ...state, topFormSelected: false }
     case "STOP_LOADING":
       return { ...state, isLoading: false }
     case "SET_VERB_IN_STATE":
